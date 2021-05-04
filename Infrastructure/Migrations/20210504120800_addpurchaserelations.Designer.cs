@@ -4,14 +4,16 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MovieShopDbContext))]
-    partial class MovieShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210504120800_addpurchaserelations")]
+    partial class addpurchaserelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,27 +215,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Purchase");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Review", b =>
-                {
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Rating")
-                        .HasColumnType("decimal(3,2)");
-
-                    b.Property<string>("ReviewText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MovieId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Review");
-                });
-
             modelBuilder.Entity("ApplicationCore.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -422,25 +403,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Review", b =>
-                {
-                    b.HasOne("ApplicationCore.Entities.Movie", "Movie")
-                        .WithMany("Reviews")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApplicationCore.Entities.User", "User")
-                        .WithMany("Reviews")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("ApplicationCore.Entities.Trailer", b =>
                 {
                     b.HasOne("ApplicationCore.Entities.Movie", "Movie")
@@ -491,8 +453,6 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("MovieCasts");
 
-                    b.Navigation("Reviews");
-
                     b.Navigation("Trailer");
                 });
 
@@ -501,8 +461,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Favorites");
 
                     b.Navigation("Purchases");
-
-                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

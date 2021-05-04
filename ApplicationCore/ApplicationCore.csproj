@@ -10,7 +10,6 @@
     <Folder Include="Models\Response\" />
     <Folder Include="Models\Requests\" />
     <Folder Include="ServiceInterfaces\" />
-    <Folder Include="RepositoryInterfaces\" />
   </ItemGroup>
 
   <ItemGroup>
