@@ -7,9 +7,6 @@
   <ItemGroup>
     <Folder Include="Exceptions\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Models\Response\" />
-    <Folder Include="Models\Requests\" />
-    <Folder Include="ServiceInterfaces\" />
   </ItemGroup>
 
   <ItemGroup>

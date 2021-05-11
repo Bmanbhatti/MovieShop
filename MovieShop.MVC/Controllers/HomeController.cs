@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ApplicationCore.ServiceInterfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieShop.MVC.Models;
 using System;
@@ -12,16 +13,27 @@ namespace MovieShop.MVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+       private readonly IMovieService _movieService;
+       // private readonly IGenreService _genreService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IMovieService movieService)
         {
-            _logger = logger;
+            _movieService = movieService;
         }
 
-        public IActionResult Index()
-        {
+        //public HomeController(IGenreService genreService)
+        //{
+        //    _genreService = genreService;
+        //}
 
-            return View();
+
+
+
+        public async Task<IActionResult> Index()
+        {
+         
+           var movies = await _movieService.GetTop30RevenueMovie();
+            return View(movies);
         }
 
         public IActionResult Privacy()

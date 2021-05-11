@@ -1,0 +1,38 @@
+﻿@using ApplicationCore.ServiceInterfaces;
+
+@inject ICurrentUserService _currentUserService;
+
+@model IEnumerable<ApplicationCore.Models.Response.MovieCardResponseModel>
+<h3>
+    User Profile
+</h3>
+<div class="container-fluid">
+
+    <div class="row">
+        Your Email:
+        @_currentUserService.Email
+    </div>
+    <div class="row">
+        Name:
+        @_currentUserService.FullName
+    </div>
+    <div class="row">
+        <div class="col">
+            @foreach (var movie in Model)
+            {
+                <div class="col-2 col-lg-3 col-sm-4 col-xl-2">
+                    <partial model="movie" name="_MovieCard" />
+                </div>
+            }
+        </div>
+        <div class="col">
+            @foreach (var movie in Model)
+            {
+                <div class="col-2 col-lg-3 col-sm-4 col-xl-2">
+                    <partial model="movie" name="_MovieCard" />
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
