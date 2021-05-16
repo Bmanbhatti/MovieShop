@@ -16,7 +16,10 @@ export class GenresComponent implements OnInit {
     // call the API
     this.genreService.getAllGenres().subscribe((g) => {
       this.genres = g;
-      console.log(this.genres);
+       //console.log(this.genres);
     });
+
+    
   }
+ 
 }

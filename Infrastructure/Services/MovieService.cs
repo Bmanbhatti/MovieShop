@@ -23,6 +23,11 @@ namespace Infrastructure.Services
         public async Task<MovieDetailResponseModel> GetMovieByIdAsync(int id)
         {
             var movie = await _movieRepository.GetByIdAsync(id);
+            if(movie== null)
+            {
+                throw new Exception("Movie not found");
+
+            }
             var genres = new List<GenreResponseModel>();
            
             var castofmovie = new List<CastResponseModel>();

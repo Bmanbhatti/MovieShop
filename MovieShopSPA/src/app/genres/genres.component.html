@@ -1,5 +1,5 @@
-
-<h2>
-genres 
-
-</h2>
+<ul>
+    <li *ngFor="let genre of genres">
+      <a [routerLink]="['/genres/', genre.id]"> {{ genre.name }} </a>
+    </li>
+  </ul>

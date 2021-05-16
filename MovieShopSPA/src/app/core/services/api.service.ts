@@ -16,12 +16,27 @@ export class ApiService {
   {
     var apiUrl= environment.apiUrl;
 
-    return this.http.get('${environment.apiUrl}${path}').pipe(map(resp => resp as any[]));
+    return this.http.get(`${environment.apiUrl}${path}`)
+      .pipe(
+        map(resp => resp as any[])
+      );
   }
+  //get list of objects based on id
+  getListById(path: string, id?:number):Observable<any[]>
+  {
+
+    return this.http.get(`${environment.apiUrl}${path}`+ id)
+    .pipe(
+      map(resp=> resp as any[])
+
+    );
+  }
+
+  
   //get singe json object
   getOne(path: string, id?:number){
 
-    return this.http.get('${environment.apiUrl}${path}'+ id).pipe(
+    return this.http.get(`${environment.apiUrl}${path}`+ id).pipe(
       map(resp=> resp as any)
 
     );

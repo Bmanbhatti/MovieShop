@@ -34,6 +34,23 @@ namespace MovieShop.API.Controllers
         }
 
         [HttpGet]
+         [Route("{id}")]
+        public async Task<IActionResult> Details(int id)
+        {
+            var movie = await _movieService.GetMovieByIdAsync(id);
+            return Ok(movie);
+        }
+        //[HttpGet]
+        //[Route("{id: int}", Name = "id")]
+        //public async Task<IActionResult> Details(int id)
+        //{
+        //    var movie = await _movieService.GetMovieByIdAsync(1);
+        //    return Ok(movie);
+        //}
+
+
+
+        [HttpGet]
         [Route("genre/{genreId:int}")]
         public async Task<IActionResult> GetMoviesByGenre(int genreId)
         {

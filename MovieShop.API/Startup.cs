@@ -63,6 +63,8 @@ namespace MovieShop.API
 
             app.UseRouting();
 
+          
+
             app.UseCors(builder =>
             {
                 builder.WithOrigins(Configuration.GetValue<string>("clientSPAUrl")).AllowAnyHeader()

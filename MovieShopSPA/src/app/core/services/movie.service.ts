@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MovieCard } from 'src/app/shared/models/movieCard';
+import { movieDetailsModel } from 'src/app/shared/models/movieDetailsModel';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -8,9 +11,16 @@ export class MovieService {
 
   constructor(private apiService: ApiService) { }
 
-  getMovieDetails(id: number){
+  getMovieDetails(id: number): Observable<movieDetailsModel>
+  {
 
-    this.apiService.getOne(`${'movies/'}`, id);
+    return this.apiService.getOne(`${'movies/'}`, id);
+
+  }
+  getTopRevenueMovies(): Observable<MovieCard[]>
+  {
+
+    return this.apiService.getList('Movies/toprevenue');
 
   }
 }

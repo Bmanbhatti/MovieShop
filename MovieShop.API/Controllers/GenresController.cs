@@ -36,6 +36,7 @@ namespace MovieShop.API.Controllers
 
             return NotFound("no genres found");
         }
+       
 
     }
 }

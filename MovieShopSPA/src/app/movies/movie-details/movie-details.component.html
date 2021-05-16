@@ -1,0 +1,132 @@
+<div class="bg-image" [style.backgroundImage]="'url('+ details?.backdropUrl +')'">
+
+  <div class="row">
+
+    <div class="col-md-3 offset-2">
+
+      <!-- details Card row -->
+      <div>
+        <img src="{{ details?.posterUrl }}" alt="{{ details?.title }}" class="card-img-top" />
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="row mt-2">
+        <div class="col-12">
+          <h1 class="text-white"> {{details?.title}}
+          </h1>
+          <small class="text-muted"> {{details?.tagline}} </small>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-4 text-secondary font-weight-bold mt-2">
+          {{details?.runTime}} m | {{details?.releaseDate | date:'yyyy'}}
+        </div>
+        <div class="col-8">
+          <ng-container *ngFor="let g of details?.genres">
+            <a href="#" *ngIf="g" [routerLink]="['/detailss/genres/', g?.id ]" class="badge badge-pill badge-dark ml-1">
+              {{g?.name}}</a>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 mt-3">
+          <h4>
+            <span class="badge badge-warning">
+              {{details?.rating | number:'1.1-1'}}
+            </span>
+          </h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 text-light mt-2">
+          {{details?.overview}}
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-md-2 mt-4 offset-1">
+      <ul class="list-group">
+        <li class="list-group-item">
+        </li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-outline-light btn-lg btn-block btn-sm"> <i class="far fa-edit mr-1"></i>
+            REVIEW
+          </button>
+        </li>
+        <li class="list-group-item"> <button type="button" class="btn btn-outline-light btn-lg btn-block btn-sm"> <i
+              class="fas fa-play mr-1"></i> TRAILER
+          </button>
+        </li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-light btn-lg btn-block btn-sm"> BUY {{details?.price | currency}}
+          </button>
+
+          <button type="button" class="btn btn-light btn-lg btn-block btn-sm"> WATCH details </button>
+        </li>
+      </ul>
+
+    </div>
+
+
+
+
+  </div>
+  <div class="row mt-4">
+    <div class="col-4 detailsfacts">
+      <h5>details FACTS</h5>
+      <hr>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <i class="far fa-calendar-alt mr-2"></i>Release Date
+          <span class="badge badge-pill badge-dark">{{details?.releaseDate | date}}</span>
+        </li>
+
+        <li class="list-group-item">
+          <i class="fas fa-hourglass-half mr-2"></i>Run Time
+          <span class="badge badge-pill badge-dark">{{details?.runTime}} m</span>
+        </li>
+
+        <li class="list-group-item">
+          <i class="fas fa-dollar-sign mr-2"></i> Budget
+          <span class="badge badge-pill badge-dark"> {{details?.budget | currency}}</span>
+        </li>
+
+        <li class="list-group-item">
+          <i class="fab fa-imdb"></i>
+
+          <a href="{{details?.imdbUrl}}" class="text-dark ml-3" target="_blank"> <i
+              class="fas fa-share-square mr-2"></i> </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="col-4 offset-1">
+      <h5>CAST</h5>
+
+      <table class="table">
+
+        <tbody>
+          <tr *ngFor="let cast of details?.casts">
+            <td> <img src="{{ cast?.profilePath }}" class="cast-small-img rounded-circle" alt="{{ cast?.name }}" />
+            </td>
+            <td> {{cast.name}} </td>
+            <td> {{cast.character}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
